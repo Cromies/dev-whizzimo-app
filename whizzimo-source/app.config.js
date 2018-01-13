@@ -6,7 +6,7 @@ const path = require('path'),
 
 module.exports = function () {
     const iconsPath = './icons/';
-    const title = 'Whizzimo';
+    const title = 'Whizzimo Developer';
     const errorUrl = url.format({
         pathname: path.join(__dirname, 'error.html'),
         protocol: 'file:',
@@ -109,7 +109,7 @@ module.exports = function () {
             URL: 'https://edu.whizzimo.com/#/login',
             HOME_URL: 'http://www.whizzimo.com/',
             ABOUT_URL: 'http://www.whizzimo.com/features.html',
-            MAIN_PAGE: 'https://edu.whizzimo.com/#/mycurriculum',
+            MAIN_PAGE: 'http://dev.whizzimo.com/',
             DARWIN: 'darwin'
         },
 
@@ -138,7 +138,7 @@ module.exports = function () {
          * Updater Settings
          */
         updateSettings: {
-            url: 'https://edu.whizzimo.com/app/',
+            url: 'https://edu.whizzimo.com/app/dev',
             autoDownload: false,
             allowDowngrade: false,
             allowPrerelease: false,

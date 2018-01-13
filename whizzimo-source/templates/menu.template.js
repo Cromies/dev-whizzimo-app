@@ -100,6 +100,17 @@ const getMenuTemplate = (window, app) => {
           }
         }
       ]
+    },
+    {
+      label: 'Tools',
+      submenu: [
+        {
+          label: 'Toggle Developer Tools',
+          click (item, focusedWindow) {
+            focusedWindow.toggleDevTools();
+          }
+        }
+      ]
     }
   ];
 

@@ -1,5 +1,5 @@
 const url = require('url'),
-    https = require('https'),
+    http = require('http'),
     path = require('path');
     
 const config = require('./app.config')();
@@ -10,7 +10,7 @@ const config = require('./app.config')();
  * @param {URL} page 
  */
 const renderUI = (window, page = config.env.MAIN_PAGE) => { 
-    https.get(url.parse(page), (res) => {
+    http.get(url.parse(page), (res) => {
         if (res.statusCode === 200) {
             window.loadURL(page);
         } else {
@@ -25,8 +25,8 @@ const renderUI = (window, page = config.env.MAIN_PAGE) => {
  * Checks for a connection to the server
  * @param {Electron.BrowserWindow} window 
  */
-const checkConnection = window => {
-    https.get(url.parse(config.env.MAIN_PAGE), (res) => {
+const checkConnection = (window) => {
+    http.get(url.parse(config.env.MAIN_PAGE), (res) => {
         if (window.webContents.getURL() === config.errorUrl &&
             res.statusCode === 200) {
             if (window.webContents.history.length > 1) {
