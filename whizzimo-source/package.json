@@ -1,8 +1,8 @@
 {
   "name": "whizzimo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "productName": "Whizzimo-Dev",
-  "description": "Whizzimo Desktop Client",
+  "description": "Whizzimo Desktop Client for Developers",
   "author": "Whizzimo, LLC",
   "homepage": "http://www.whizzimo.com/",
   "main": "index.js",

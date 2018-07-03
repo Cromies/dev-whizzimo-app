@@ -2,20 +2,20 @@
  * Application Configuration Settings
  */
 const path = require('path'),
-    url = require('url');    
+    url = require('url');
 
 module.exports = function () {
     const iconsPath = './icons/';
-    const title = 'Whizzimo Developer';
+    const title = 'Whizzimo Developer Edition';
     const errorUrl = url.format({
         pathname: path.join(__dirname, 'error.html'),
         protocol: 'file:',
         slashes: true
-    });
+    }).replace(/\\/g, "/");
 
-    const config = {
+    return Object.freeze({
         title: title,
-        
+
         /**
          * Tool Tip Settings
          */
@@ -52,8 +52,8 @@ module.exports = function () {
         preventUnloadSettings: {
             type: 'question',
             buttons: [
-              'Leave',
-              'Stay'
+                'Leave',
+                'Stay'
             ],
             title: 'Do you want to leave this site?',
             message: 'Changes you made may not be saved.',
@@ -64,6 +64,20 @@ module.exports = function () {
         errorBoxSettings: {
             title: `${title} will now close.`,
             content: `${title} encountered an error and needs to close.`
+        },
+
+        aboutDiagSettings(app) {
+            return {
+                type: "info",
+                title: `${this.title}`,
+                message: `About ${this.title}`,
+                detail: `Version: ${app.getVersion()}.
+Changes:
+- fixed:
+    - updater fixes.
+    - other bug fixes`,
+                buttons: ["Close"]
+            };
         },
 
         /**
@@ -77,11 +91,11 @@ module.exports = function () {
         getElectronWindowSettings() {
             return {
                 title: title,
-                width: config.dimensions.width,
-                height: config.dimensions.height,
-                minWidth: config.dimensions.width,
-                minHeight: config.dimensions.height,
-                icon: config.icoPath,
+                width: this.dimensions.width,
+                height: this.dimensions.height,
+                minWidth: this.dimensions.width,
+                minHeight: this.dimensions.height,
+                icon: this.icoPath,
                 webPreferences: {
                     nodeIntegration: false,
                     webSecurity: false,
@@ -131,6 +145,7 @@ module.exports = function () {
             DID_FAIL_LOAD: 'did-fail-load',
             DID_FINISH_LOAD: 'did-finish-load',
             WILL_QUIT: 'will-quit',
+            PAGE_TITLE_UPDATED: 'page-title-updated',
             WILL_DOWNLOAD: 'will-download'
         },
 
@@ -158,28 +173,23 @@ module.exports = function () {
         /**
          * Update dialogs config
          */
-        updateDialogsSettings: {
+        updateNotAvailableSettings: {
+            type: 'info',
             title: 'Updates',
-            messages: {
-                check_message: 'Checking for updates...',
-                avail_message: 'Updates are available!\nWould you like to download updates now or later?',
-                n_avail_message: 'Update not available',
-                error_message: 'Error in auto updater',
-                prog_message: 'Download in progess...',
-                finished_message: `Update downloaded!\nWould you like to restart ${title} to apply update?`
-            },
-            buttons: {
-                avail_diag: ['Install Now', 'Install Later'],
-                down_diag: ['Yes. Install Now!', 'No. Install on Restart']
-            }
+            message: `Update for ${title} not available`
         },
-        
+
+        updateDownloadedSettings: {
+            type: 'info',
+            title: 'Updates',
+            message: `Update downloaded!\nWould you like to restart ${title} to apply update?`,
+            buttons: ['Yes. Install Now!', 'No. Install on Restart']
+        },
+
         /**
          * Error Page
          */
         errorUrl: errorUrl
 
-    };
-
-    return config;
+    });
 }

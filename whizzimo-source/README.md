@@ -1,2 +1,3 @@
-# Whizzimo Desktop Client for Windows
+# Whizzimo Developer Edition Desktop Client for Windows
+
 ## IMPORTANT: 64-bit Windows is required for this port

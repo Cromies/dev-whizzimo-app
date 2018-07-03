@@ -1,7 +1,7 @@
 {
   "name": "dev-whizzimo-app",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Whizzimo Developer Client",
   "main": "index.js",
   "dependencies": {
     "auto-updater": "^1.0.2",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linuxguy467/whizzimo-app.git"
+    "url": "git+https://github.com/loturner/dev-whizzimo-app.git"
   },
   "devDependencies": {},
   "scripts": {
