@@ -101,7 +101,7 @@ async function createWindow() {
 
   await renderer.renderUI(mainWindow);
 
-  updater.applyUpdater();
+  updater.applyUpdater(mainWindow);
 };
 
 // Clears the Storage Caches

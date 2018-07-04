@@ -4,7 +4,7 @@ const {
 } = require('electron');
 const config = require('../app.config')();
 
-async function applyUpdater() {
+async function applyUpdater(window) {
   /**
    * Apply configuration Settings
    */
@@ -13,14 +13,11 @@ async function applyUpdater() {
    * Auto Update Events
    */
   autoUpdater.on(config.updateEvents.UPDATE_ERROR, () => {})
-    .on(config.updateEvents.UPDATE_NOT_AVAILABLE, info => {})
+    .on(config.updateEvents.UPDATE_NOT_AVAILABLE, info => {
+      dialog.showMessageBox(window, config.updateNotAvailableSettings);
+    })
     .on(config.updateEvents.UPDATE_DOWNLOADED, (event, releaseNotes, releaseName) => {
-      dialog.showMessageBox({
-        type: 'info',
-        title: config.updateDialogsSettings.title,
-        message: config.updateDialogsSettings.messages.finished_message,
-        buttons: config.updateDialogsSettings.buttons.down_diag
-      }, response => {
+      dialog.showMessageBox(window, config.updateDownloadedSettings, response => {
         if (response === 0) {
           setTimeout(() => autoUpdater.quitAndInstall(), 1);
         }

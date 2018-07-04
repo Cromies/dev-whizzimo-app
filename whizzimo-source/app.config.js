@@ -75,7 +75,7 @@ module.exports = function () {
 Changes:
 - fixed:
     - updater fixes.
-    - other bug fixes`,
+    - other fixes`,
                 buttons: ["Close"]
             };
         },
